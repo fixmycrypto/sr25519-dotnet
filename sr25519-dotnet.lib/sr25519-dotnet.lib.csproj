@@ -11,15 +11,15 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'win-x64' ">
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'win-x64' Or '$(RuntimeIdentifier)' == '' ">
     <ContentWithTargetPath Include="..\native\libs\x86_64-pc-windows-msvc\sr25519crust.dll" CopyToOutputDirectory="PreserveNewest" TargetPath="sr25519crust.dll" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'osx-x64' Or '$(RuntimeIdentifier)' == 'osx-arm64' ">
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'osx-x64' Or '$(RuntimeIdentifier)' == 'osx-arm64' Or '$(RuntimeIdentifier)' == ''">
     <ContentWithTargetPath Include="..\native\libs\universal-apple-darwin\libsr25519crust.dylib" CopyToOutputDirectory="PreserveNewest" TargetPath="libsr25519crust.dylib" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'linux-x64' ">
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'linux-x64' Or '$(RuntimeIdentifier)' == '' ">
     <ContentWithTargetPath Include="..\native\libs\x86_64-unknown-linux-gnu\libsr25519crust.so" CopyToOutputDirectory="PreserveNewest" TargetPath="libsr25519crust.so" />
   </ItemGroup>
 

@@ -3,7 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>sr25519_dotnet.lib</RootNamespace>
-    <Platforms>AnyCPU;x64</Platforms>
+    <RuntimeIdentifiers>win-x64;osx-x64;osx-arm64;linux-x64</RuntimeIdentifiers>
   </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'win-x64' ">
+    <ContentWithTargetPath Include="..\native\libs\x86_64-pc-windows-msvc\sr25519crust.dll" CopyToOutputDirectory="PreserveNewest" TargetPath="sr25519crust.dll" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'osx-x64' Or '$(RuntimeIdentifier)' == 'osx-arm64' ">
+    <ContentWithTargetPath Include="..\native\libs\universal-apple-darwin\libsr25519crust.dylib" CopyToOutputDirectory="PreserveNewest" TargetPath="libsr25519crust.dylib" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(RuntimeIdentifier)' == 'linux-x64' ">
+    <ContentWithTargetPath Include="..\native\libs\x86_64-unknown-linux-gnu\libsr25519crust.so" CopyToOutputDirectory="PreserveNewest" TargetPath="libsr25519crust.so" />
+  </ItemGroup>
 
 </Project>
